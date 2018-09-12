@@ -7,3 +7,4 @@ addTest('test_parallel');
 addTest('test_series');
 addTest('test_shortgndz');
 addTest('test_csrc');
+addTest('test_idealtrans');

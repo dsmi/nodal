@@ -1,5 +1,5 @@
 function [F, V, I, dYd]=solve(branches, Y, W, K)
-% function [, V, I, dYd]=solve(branches, Y, W, K)
+% function [F, V, I, dYd]=solve(branches, Y, W, K)
 % 
 % Solves the linear circuit. Node 1 is assumed to be the only ground.
 % The circuit is solved using the nodal analysis, which means that no circuit

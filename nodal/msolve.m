@@ -1,5 +1,5 @@
-function [F, V, I, M]=msolve(branches, Y, W, K, Z, A, B)
-% function [F, V, I, M]=msolve(branches, Y, W, K, Z, A, B)
+function [F, V, I, M, b]=msolve(branches, Y, W, K, Z, A, B)
+% function [F, V, I, M, b]=msolve(branches, Y, W, K, Z, A, B)
 % 
 % Solves the linear circuit. Node 1 is assumed to be the only ground.
 % The circuit is solved using the modified nodal analysis which allows
@@ -35,6 +35,8 @@ function [F, V, I, M]=msolve(branches, Y, W, K, Z, A, B)
 %  I - edge currents
 %  M - the matrix of the MNA matrix equation. Se below for the details
 %      on how it is built.
+%  b - right-hand side vector of the MNA matrix equation. Can be useful
+%      for inspection, see below for the details on how it is built.
 %
 %
 % The modified nodal analysis extends the nodal analysis, and the description
