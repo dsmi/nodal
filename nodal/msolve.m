@@ -110,21 +110,19 @@ C=double(Y>1e99);
 % branches and ones for non-singular
 D=eye(nb,nb)-C;
 
-% Indices of the singular branches
-sidx=find(diag(C));
+% Matrix to remove non-singular columns/rows
+SC = eye( nb, nb );
+SC = SC(:, find(diag(C)) ); % Y * sc removes non-singular columns
 
 % C with zero columns/rows removed
-CC=C(:,sidx);
-CR=CC';
+CC = C*SC;
+CR = SC'*C;
 
 % Prepare blocks of the MNA matrix
-CA=C+A;
-CA=CA(:,sidx);
+CA = (C+A)*SC;
+CB = SC'*(C-B);
 
-CB=C-B;
-CB=CB(sidx,:);
-
-ZZ=Z(sidx,sidx);
+ZZ = SC'*Z*SC;
 
 M=[ dd*D*Y*D*d   -dd*CA ; ...
           CB*d    ZZ  ];
@@ -138,5 +136,5 @@ V=-d*F;           % branch voltages
 Is=x(nn:end);     % singular branch currents
 I=D*(K+Y*(V-W));  % branch currents
 if ~isempty(Is)
-   I = I+CC*Is+A(:,sidx)*Is;
+   I = I+CC*Is+A*SC*Is;
 end
