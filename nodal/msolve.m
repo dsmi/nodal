@@ -131,9 +131,9 @@ b=[ dd*K-dd*D*Y*D*W ; ...
       -CR*W ];
 
 x=M\b;
-F=x(1:nn-1);
+F=x(1:nn-1,:);
 V=-d*F;           % branch voltages
-Is=x(nn:end);     % singular branch currents
+Is=x(nn:end,:);   % singular branch currents
 I=D*(K+Y*(V-W));  % branch currents
 if ~isempty(Is)
    I = I+CC*Is+A*SC*Is;
